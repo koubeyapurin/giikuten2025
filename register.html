@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>やりたいことを登録 - ゆるふわボード</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="register-page">
+    <header class="header">
+        <h1 class="title">➕ やりたいことを登録</h1>
+        <p class="subtitle">あなたの「したいこと」をふわっと追加しよう</p>
+    </header>
+
+    <!-- 登録フォームのみ表示 -->
+    <div class="post-form-container">
+        <form class="post-form" id="postForm">
+            <div class="form-group">
+                <input type="text" id="nickname" placeholder="ニックネーム（任意）" maxlength="20" class="nickname-input">
+                <select id="category" class="category-select">
+                    <option value="食べたい">食べたい</option>
+                    <option value="遊びたい">遊びたい</option>
+                    <option value="学びたい" selected>学びたい</option>
+                    <option value="旅行したい">旅行したい</option>
+                    <option value="その他">その他</option>
+                </select>
+                <select id="lifetime" class="category-select">
+                    <option value="15">15秒で消える</option>
+                    <option value="30" selected>30秒で消える</option>
+                    <option value="60">60秒で消える</option>
+                </select>
+                <textarea id="postContent" placeholder="何をしたいですか？" maxlength="100" required class="content-input"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">
+                <span class="btn-text">ふわっと登録</span>
+                <span class="btn-icon">💭</span>
+            </button>
+            <div class="loading-indicator" id="loadingIndicator" style="display: none;">
+                <span class="loading-text">ホームに移動中...</span>
+            </div>
+        </form>
+    </div>
+
+    <!-- ボトムナビ（固定） -->
+    <nav class="bottom-nav">
+        <a class="nav-item" href="index.html" aria-label="ホーム">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">ホーム</span>
+        </a>
+        <a class="nav-item" href="explore.html" aria-label="探索">
+            <span class="nav-icon">🔍</span>
+            <span class="nav-label">探索</span>
+        </a>
+        <a class="nav-item nav-primary active" href="register.html" aria-label="登録">
+            <span class="nav-icon">➕</span>
+            <span class="nav-label">登録</span>
+        </a>
+        <a class="nav-item" href="notification.html" aria-label="通知">
+            <span class="nav-icon">🔔</span>
+            <span class="nav-label">通知</span>
+        </a>
+        <a class="nav-item" href="account.html" aria-label="アカウント">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">アカウント</span>
+        </a>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>探索 - ゆるふわボード</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="explore-page">
+    <header class="header">
+        <h1 class="title">🔍 探索</h1>
+        <p class="subtitle">人気の投稿をカテゴリ別に見てみよう</p>
+    </header>
+
+    <!-- 検索バー -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="検索..." class="search-input">
+        <button class="search-btn">🔍</button>
+    </div>
+
+    <!-- カテゴリフィルター -->
+    <div class="category-filter">
+        <button class="cat-filter-btn active" data-category="all">すべて</button>
+        <button class="cat-filter-btn" data-category="食べたい">食べたい</button>
+        <button class="cat-filter-btn" data-category="遊びたい">遊びたい</button>
+        <button class="cat-filter-btn" data-category="学びたい">学びたい</button>
+        <button class="cat-filter-btn" data-category="旅行したい">旅行したい</button>
+        <button class="cat-filter-btn" data-category="その他">その他</button>
+    </div>
+
+    <!-- 投稿表示エリア -->
+    <main class="explore-container">
+        <div class="explore-content" id="exploreContent">
+            <!-- プレースホルダー -->
+            <div class="explore-placeholder">
+                <div class="placeholder-icon">🎈</div>
+                <p class="placeholder-text">まだ投稿はありません</p>
+                <p class="placeholder-subtext">最初の投稿をしてみませんか？</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- ボトムナビ -->
+    <nav class="bottom-nav">
+        <a class="nav-item" href="index.html" aria-label="ホーム">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">ホーム</span>
+        </a>
+        <a class="nav-item active" href="explore.html" aria-label="探索">
+            <span class="nav-icon">🔍</span>
+            <span class="nav-label">探索</span>
+        </a>
+        <a class="nav-item nav-primary" href="register.html" aria-label="登録">
+            <span class="nav-icon">➕</span>
+            <span class="nav-label">登録</span>
+        </a>
+        <a class="nav-item" href="notification.html" aria-label="通知">
+            <span class="nav-icon">🔔</span>
+            <span class="nav-label">通知</span>
+        </a>
+        <a class="nav-item" href="account.html" aria-label="アカウント">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">アカウント</span>
+        </a>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>

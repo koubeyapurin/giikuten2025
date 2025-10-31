@@ -1,0 +1,963 @@
+/* リセットとベーススタイル */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Zen Maru Gothic', sans-serif;
+    background: linear-gradient(135deg, #ffeef8 0%, #f0f8ff 50%, #f0fff0 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    transition: background 400ms ease;
+}
+
+/* テーマ */
+.theme-morning {
+    background: linear-gradient(135deg, #fff0f5 0%, #ffe4ec 50%, #fffaf0 100%);
+}
+.theme-day {
+    background: linear-gradient(135deg, #e6fff7 0%, #eaf6ff 50%, #f5fff0 100%);
+}
+.theme-night {
+    background: linear-gradient(135deg, #141e30 0%, #243b55 50%, #3b2c59 100%);
+}
+/* フィルターUI */
+.filter-bar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 10px 16px;
+    margin-top: -10px;
+}
+.filter-btn {
+    border: none;
+    background: rgba(255, 255, 255, 0.8);
+    color: #8b7f8b;
+    padding: 8px 12px;
+    border-radius: 16px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(255, 107, 157, 0.15);
+    font-family: inherit;
+    font-size: 0.85rem;
+}
+.filter-btn:hover {
+    transform: translateY(-1px);
+}
+.filter-btn.active {
+    background: linear-gradient(135deg, #ff6b9d, #ff9a9e);
+    color: #fff;
+}
+
+/* 背景の泡エフェクト */
+.bubble-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    animation: float 6s ease-in-out infinite;
+}
+
+.bubble-1 {
+    width: 60px;
+    height: 60px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 8s;
+}
+
+.bubble-2 {
+    width: 40px;
+    height: 40px;
+    top: 60%;
+    left: 80%;
+    animation-delay: 2s;
+    animation-duration: 6s;
+}
+
+.bubble-3 {
+    width: 80px;
+    height: 80px;
+    top: 30%;
+    left: 70%;
+    animation-delay: 4s;
+    animation-duration: 10s;
+}
+
+.bubble-4 {
+    width: 30px;
+    height: 30px;
+    top: 80%;
+    left: 20%;
+    animation-delay: 1s;
+    animation-duration: 7s;
+}
+
+.bubble-5 {
+    width: 50px;
+    height: 50px;
+    top: 10%;
+    left: 50%;
+    animation-delay: 3s;
+    animation-duration: 9s;
+}
+
+.bubble-6 {
+    width: 70px;
+    height: 70px;
+    top: 70%;
+    left: 60%;
+    animation-delay: 5s;
+    animation-duration: 8s;
+}
+
+.bubble-7 {
+    width: 35px;
+    height: 35px;
+    top: 40%;
+    left: 30%;
+    animation-delay: 2.5s;
+    animation-duration: 7s;
+}
+
+.bubble-8 {
+    width: 45px;
+    height: 45px;
+    top: 90%;
+    left: 90%;
+    animation-delay: 1.5s;
+    animation-duration: 6s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) translateX(0px) rotate(0deg);
+        opacity: 0.3;
+    }
+    25% {
+        transform: translateY(-20px) translateX(10px) rotate(90deg);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(-10px) translateX(-5px) rotate(180deg);
+        opacity: 0.4;
+    }
+    75% {
+        transform: translateY(-30px) translateX(15px) rotate(270deg);
+        opacity: 0.7;
+    }
+}
+
+/* ルーム表示 */
+.room-indicator {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #ff6b9d;
+}
+
+.room-label {
+    margin-right: 5px;
+}
+
+.room-name {
+    font-weight: 500;
+    background: rgba(255, 107, 157, 0.1);
+    padding: 4px 12px;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+/* ヘッダー */
+.header {
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #ff6b9d;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(255, 107, 157, 0.2);
+    animation: gentle-pulse 3s ease-in-out infinite;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: #8b7f8b;
+    font-weight: 300;
+}
+
+/* ローディングインジケーター */
+.loading-indicator {
+    text-align: center;
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(255, 107, 157, 0.1);
+    border-radius: 15px;
+}
+
+.loading-text {
+    color: #ff6b9d;
+    font-size: 0.9rem;
+    animation: loading-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes loading-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* 投稿表示エリア */
+.posts-container {
+    padding: 20px;
+    min-height: calc(100vh - 200px);
+    position: relative;
+    z-index: 5;
+}
+
+/* ボトムナビ */
+.bottom-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255, 107, 157, 0.2);
+    z-index: 120;
+}
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    text-decoration: none;
+    color: #8b7f8b;
+    font-size: 0.75rem;
+    transition: transform 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+.nav-item .nav-icon {
+    font-size: 1.3rem;
+    line-height: 1;
+}
+.nav-item.active {
+    color: #ff6b9d;
+}
+.nav-item:hover {
+    transform: translateY(-1px);
+}
+.nav-item.nav-primary {
+    color: #fff;
+    background: linear-gradient(135deg, #ff6b9d, #ff9a9e);
+    margin: 6px 8px;
+    border-radius: 14px;
+}
+
+/* ホーム画面の下余白（ナビ分） */
+.posts-container {
+    padding-bottom: 100px;
+}
+
+/* アカウントページ専用スタイル */
+.account-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    min-height: calc(100vh - 200px);
+    position: relative;
+    z-index: 5;
+}
+
+.account-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    padding: 30px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: bubble-appear 0.8s ease-out;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.account-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(255, 107, 157, 0.25);
+}
+
+/* 探索ページ専用スタイル */
+.explore-page .search-bar {
+    padding: 15px 20px;
+    display: flex;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 107, 157, 0.2);
+}
+
+.search-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid rgba(255, 107, 157, 0.2);
+    border-radius: 20px;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.search-btn {
+    padding: 10px 20px;
+    border: none;
+    background: linear-gradient(135deg, #ff6b9d, #ff9a9e);
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 157, 0.3);
+}
+
+.category-filter {
+    display: flex;
+    gap: 8px;
+    padding: 15px 20px;
+    overflow-x: auto;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.cat-filter-btn {
+    border: none;
+    background: rgba(255, 255, 255, 0.8);
+    color: #8b7f8b;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 0.85rem;
+}
+
+.cat-filter-btn:hover {
+    background: rgba(255, 107, 157, 0.1);
+}
+
+.cat-filter-btn.active {
+    background: linear-gradient(135deg, #ff6b9d, #ff9a9e);
+    color: white;
+}
+
+.explore-container {
+    padding: 20px;
+    min-height: calc(100vh - 250px);
+    padding-bottom: 100px;
+}
+
+/* 通知ページ */
+.notification-container {
+    padding: 20px;
+    padding-bottom: 100px;
+}
+
+.notification-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.notification-item {
+    display: flex;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 107, 157, 0.2);
+    border-radius: 16px;
+    padding: 12px 14px;
+    box-shadow: 0 6px 16px rgba(255, 107, 157, 0.12);
+}
+
+.notif-icon {
+    font-size: 1.2rem;
+}
+
+.notif-content {
+    flex: 1;
+}
+
+.notif-text {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.notif-meta {
+    font-size: 0.75rem;
+    color: #999;
+}
+
+.explore-placeholder {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.placeholder-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.placeholder-text {
+    font-size: 1.2rem;
+    color: #8b7f8b;
+    margin-bottom: 10px;
+}
+
+.placeholder-subtext {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+/* モバイル最適化 */
+.touch-device .react-btn {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px;
+}
+
+.touch-device .share-btn,
+.touch-device .pin-btn,
+.touch-device .screenshot-btn {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px;
+}
+
+.touch-device .post-bubble {
+    touch-action: pan-y;
+}
+
+.touch-device .submit-btn {
+    min-height: 48px;
+    padding: 12px 24px;
+}
+
+/* スワイプジェスチャー用のスタイル */
+.post-bubble {
+    transition: transform 0.2s ease;
+}
+
+.post-bubble.swipe-left {
+    transform: translateX(-100px);
+    opacity: 0.5;
+}
+
+.post-bubble.swipe-right {
+    transform: translateX(100px);
+    opacity: 0.5;
+}
+
+/* 登録ページ専用スタイル */
+.register-page .post-form-container {
+    position: relative;
+    bottom: auto;
+    margin-bottom: 100px; /* ナビ分の余白 */
+}
+
+/* 投稿バブル */
+.post-bubble {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    padding: 20px;
+    margin: 15px auto;
+    max-width: 300px;
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: bubble-appear 0.8s ease-out;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.post-bubble:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(255, 107, 157, 0.25);
+}
+
+@keyframes bubble-appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(50px);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1) translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.post-header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.screenshot-btn, .share-btn, .pin-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+}
+
+.screenshot-btn:hover, .share-btn:hover, .pin-btn:hover {
+    background: rgba(255, 107, 157, 0.1);
+    transform: scale(1.1);
+}
+
+.pin-btn.pinned {
+    background: rgba(255, 107, 157, 0.2);
+    animation: pin-bounce 0.6s ease;
+}
+
+.share-btn.shared {
+    background: rgba(76, 175, 80, 0.2);
+    animation: share-bounce 0.6s ease;
+}
+
+.screenshot-btn.captured {
+    background: rgba(33, 150, 243, 0.2);
+    animation: screenshot-flash 0.6s ease;
+}
+
+@keyframes pin-bounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+}
+
+@keyframes share-bounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+}
+
+@keyframes screenshot-flash {
+    0%, 100% {
+        transform: scale(1);
+        background: rgba(33, 150, 243, 0.2);
+    }
+    50% {
+        transform: scale(1.3);
+        background: rgba(33, 150, 243, 0.4);
+    }
+}
+
+.post-nickname {
+    font-weight: 500;
+    color: #ff6b9d;
+    font-size: 0.9rem;
+}
+
+.post-time {
+    font-size: 0.7rem;
+    color: #aaa;
+}
+
+.post-content {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 15px;
+    word-wrap: break-word;
+}
+/* カテゴリバッジ */
+.post-category-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+    color: #555;
+    background: rgba(255,255,255,0.7);
+}
+
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.like-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.like-btn:hover {
+    background: rgba(255, 107, 157, 0.1);
+    transform: scale(1.1);
+}
+
+.like-btn.liked {
+    background: rgba(255, 107, 157, 0.2);
+    animation: heart-bounce 0.6s ease;
+}
+
+@keyframes heart-bounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.3);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    75% {
+        transform: scale(1.2);
+    }
+}
+
+.like-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.like-btn:hover .like-icon {
+    transform: scale(1.2);
+}
+
+.like-count {
+    font-size: 0.9rem;
+    color: #ff6b9d;
+    font-weight: 500;
+}
+/* 複数リアクション */
+.reactions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.react-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border-radius: 16px;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    background: rgba(255,255,255,0.8);
+}
+.react-btn .icon {
+    font-size: 1.1rem;
+}
+.react-btn .count {
+    font-size: 0.9rem;
+    color: #ff6b9d;
+    font-weight: 500;
+}
+.react-btn:hover {
+    transform: translateY(-1px) scale(1.03);
+}
+.react-btn.active {
+    background: rgba(255, 107, 157, 0.18);
+}
+
+.post-timer {
+    width: 80px;
+    height: 4px;
+    background: rgba(255, 107, 157, 0.2);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.timer-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #ff6b9d, #ff9a9e);
+    border-radius: 2px;
+    width: 100%;
+    animation: timer-countdown 15s linear forwards;
+}
+
+.timer-text {
+    font-size: 0.6rem;
+    color: #999;
+    margin-top: 2px;
+    display: block;
+    text-align: center;
+}
+
+@keyframes timer-countdown {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0%;
+    }
+}
+
+/* 投稿フォーム */
+.post-form-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 107, 157, 0.2);
+    padding: 20px;
+    z-index: 100;
+}
+
+.post-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.nickname-input,
+.content-input {
+    width: 100%;
+    border: 2px solid rgba(255, 107, 157, 0.2);
+    border-radius: 15px;
+    padding: 12px 15px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    resize: none;
+}
+
+.nickname-input {
+    margin-bottom: 10px;
+}
+
+.content-input {
+    min-height: 60px;
+}
+/* カテゴリ選択 */
+.category-select {
+    width: 100%;
+    border: 2px solid rgba(255, 107, 157, 0.2);
+    border-radius: 15px;
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+.category-select:focus {
+    outline: none;
+    border-color: #ff6b9d;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+}
+
+.nickname-input:focus,
+.content-input:focus {
+    outline: none;
+    border-color: #ff6b9d;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+}
+
+.submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #ff6b9d, #ff9a9e);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 15px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.btn-icon {
+    font-size: 1.2rem;
+    animation: float-icon 2s ease-in-out infinite;
+}
+
+@keyframes float-icon {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.5rem;
+    }
+    
+    .subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .post-bubble {
+        margin: 10px auto;
+        padding: 15px;
+        max-width: 280px;
+    }
+    
+    .post-form-container {
+        padding: 15px;
+    }
+    
+    .posts-container {
+        padding: 15px;
+        padding-bottom: 120px; /* フォーム分の余白 */
+    }
+}
+
+@media (min-width: 768px) {
+    .posts-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 30px;
+    }
+    
+    .post-bubble {
+        margin: 0;
+    }
+}
+
+/* 投稿の浮遊アニメーション */
+.post-bubble.floating {
+    animation: gentle-float 4s ease-in-out infinite;
+}
+
+@keyframes gentle-float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-8px) rotate(1deg);
+    }
+    50% {
+        transform: translateY(-4px) rotate(-1deg);
+    }
+    75% {
+        transform: translateY(-12px) rotate(0.5deg);
+    }
+}
+
+/* いいね数に応じた泡のサイズ変化 */
+.post-bubble.large-bubble {
+    transform: scale(1.1);
+    box-shadow: 0 12px 35px rgba(255, 107, 157, 0.25);
+}
+
+.post-bubble.extra-large-bubble {
+    transform: scale(1.2);
+    box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
+}
+/* カテゴリボーダー色 */
+.post-bubble.cat-食べたい {
+    border-color: rgba(255, 182, 193, 0.6);
+}
+.post-bubble.cat-遊びたい {
+    border-color: rgba(173, 216, 230, 0.6);
+}
+.post-bubble.cat-学びたい {
+    border-color: rgba(144, 238, 144, 0.6);
+}
+.post-bubble.cat-旅行したい {
+    border-color: rgba(255, 228, 181, 0.7);
+}
+.post-bubble.cat-その他 {
+    border-color: rgba(221, 160, 221, 0.6);
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ゆるふわやりたいことボード</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 背景の泡エフェクト -->
+    <div class="bubble-background">
+        <div class="bubble bubble-1"></div>
+        <div class="bubble bubble-2"></div>
+        <div class="bubble bubble-3"></div>
+        <div class="bubble bubble-4"></div>
+        <div class="bubble bubble-5"></div>
+        <div class="bubble bubble-6"></div>
+        <div class="bubble bubble-7"></div>
+        <div class="bubble bubble-8"></div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="header">
+        <h1 class="title">✨ ゆるふわやりたいことボード ✨</h1>
+        <p class="subtitle">あなたの「したいこと」をふわっと共有しよう</p>
+        <div class="room-indicator" id="roomIndicator">
+            <span class="room-label">ルーム:</span>
+            <span class="room-name" id="roomName">メイン</span>
+        </div>
+    </header>
+    <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" data-filter="all">すべて</button>
+        <button class="filter-btn" data-filter="食べたい">食べたい</button>
+        <button class="filter-btn" data-filter="遊びたい">遊びたい</button>
+        <button class="filter-btn" data-filter="学びたい">学びたい</button>
+        <button class="filter-btn" data-filter="旅行したい">旅行したい</button>
+        <button class="filter-btn" data-filter="その他">その他</button>
+    </div>
+
+    <!-- 投稿表示エリア -->
+    <main class="posts-container" id="postsContainer">
+        <!-- 投稿はJavaScriptで動的に追加されます -->
+    </main>
+
+    <!-- ボトムナビ（固定） -->
+    <nav class="bottom-nav">
+        <a class="nav-item active" href="index.html" aria-label="ホーム">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">ホーム</span>
+        </a>
+        <a class="nav-item" href="explore.html" aria-label="探索">
+            <span class="nav-icon">🔍</span>
+            <span class="nav-label">探索</span>
+        </a>
+        <a class="nav-item nav-primary" href="register.html" aria-label="登録">
+            <span class="nav-icon">➕</span>
+            <span class="nav-label">登録</span>
+        </a>
+        <a class="nav-item" href="notification.html" aria-label="通知">
+            <span class="nav-icon">🔔</span>
+            <span class="nav-label">通知</span>
+        </a>
+        <a class="nav-item" href="account.html" aria-label="アカウント">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">アカウント</span>
+        </a>
+    </nav>
+
+    <!-- 投稿テンプレート（非表示） -->
+    <template id="postTemplate">
+        <div class="post-bubble">
+            <div class="post-header">
+                <span class="post-nickname"></span>
+                <div class="post-header-right">
+                    <button class="screenshot-btn" data-type="screenshot" title="スクリーンショット">
+                        <span class="screenshot-icon">📷</span>
+                    </button>
+                    <button class="share-btn" data-type="share" title="共有">
+                        <span class="share-icon">📤</span>
+                    </button>
+                    <button class="pin-btn" data-type="pin" title="ピン留め">
+                        <span class="pin-icon">📌</span>
+                    </button>
+                    <span class="post-time"></span>
+                </div>
+            </div>
+            <div class="post-category-badge"></div>
+            <div class="post-content"></div>
+            <div class="post-footer">
+                <div class="reactions">
+                    <button class="react-btn react-like" data-type="like">
+                        <span class="icon">💖</span><span class="count">0</span>
+                    </button>
+                    <button class="react-btn react-cheer" data-type="cheer">
+                        <span class="icon">💪</span><span class="count">0</span>
+                    </button>
+                    <button class="react-btn react-join" data-type="join">
+                        <span class="icon">🤝</span><span class="count">0</span>
+                    </button>
+                </div>
+                <div class="post-timer">
+                    <div class="timer-bar"></div>
+                    <span class="timer-text">残り時間</span>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>

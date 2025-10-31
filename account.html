@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アカウント詳細 - ゆるふわボード</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="title">👤 アカウント詳細</h1>
+        <p class="subtitle">ニックネームやテーマの設定を管理します</p>
+    </header>
+
+    <main class="account-container">
+        <div class="account-card">
+            <div class="post-header">
+                <span class="post-nickname">あなた</span>
+                <span class="post-time">設定</span>
+            </div>
+            <div class="post-content">
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                    <label>表示ニックネーム
+                        <input type="text" id="accountNickname" class="nickname-input" placeholder="例: 匿名さん">
+                    </label>
+                    <label>テーマ
+                        <select id="themeSelect" class="category-select">
+                            <option value="auto">自動（デフォルト）</option>
+                            <option value="morning">朝（やわらかいピンク）</option>
+                            <option value="day">昼（ミント/空色）</option>
+                            <option value="night">夜（ネイビー/紫）</option>
+                        </select>
+                    </label>
+                    <button class="submit-btn" type="button" onclick="saveAccountSettings()">保存</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <a class="nav-item" href="index.html" aria-label="ホーム">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">ホーム</span>
+        </a>
+        <a class="nav-item" href="explore.html" aria-label="探索">
+            <span class="nav-icon">🔍</span>
+            <span class="nav-label">探索</span>
+        </a>
+        <a class="nav-item nav-primary" href="register.html" aria-label="登録">
+            <span class="nav-icon">➕</span>
+            <span class="nav-label">登録</span>
+        </a>
+        <a class="nav-item" href="notification.html" aria-label="通知">
+            <span class="nav-icon">🔔</span>
+            <span class="nav-label">通知</span>
+        </a>
+        <a class="nav-item active" href="account.html" aria-label="アカウント">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">アカウント</span>
+        </a>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通知 - ゆるふわボード</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="notification-page">
+    <header class="header">
+        <h1 class="title">🔔 通知</h1>
+        <p class="subtitle">最近のリアクション</p>
+    </header>
+
+    <main class="notification-container">
+        <ul class="notification-list" id="notificationList"></ul>
+        <div class="notification-empty" id="notificationEmpty" style="display:none;">
+            <div class="placeholder-icon">✨</div>
+            <p class="placeholder-text">まだ通知はありません</p>
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <a class="nav-item" href="index.html" aria-label="ホーム">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">ホーム</span>
+        </a>
+        <a class="nav-item" href="explore.html" aria-label="探索">
+            <span class="nav-icon">🔍</span>
+            <span class="nav-label">探索</span>
+        </a>
+        <a class="nav-item nav-primary" href="register.html" aria-label="登録">
+            <span class="nav-icon">➕</span>
+            <span class="nav-label">登録</span>
+        </a>
+        <a class="nav-item active" href="notification.html" aria-label="通知">
+            <span class="nav-icon">🔔</span>
+            <span class="nav-label">通知</span>
+        </a>
+        <a class="nav-item" href="account.html" aria-label="アカウント">
+            <span class="nav-icon">👤</span>
+            <span class="nav-label">アカウント</span>
+        </a>
+    </nav>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const listEl = document.getElementById('notificationList');
+        const emptyEl = document.getElementById('notificationEmpty');
+        try {
+            const raw = localStorage.getItem('yurufuwa_notifications');
+            const list = raw ? JSON.parse(raw) : [];
+            if (!list.length) {
+                emptyEl.style.display = 'block';
+                return;
+            }
+            const typeToEmoji = { like: '💖', cheer: '💪', join: '🤝' };
+            list.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'notification-item';
+                const date = new Date(item.createdAt);
+                li.innerHTML = `
+                    <div class="notif-icon">${typeToEmoji[item.reactionType] || '✨'}</div>
+                    <div class="notif-content">
+                        <div class="notif-text"><strong>${item.nickname}</strong> さんの「${item.content}」に${typeToEmoji[item.reactionType] || ''}が付きました</div>
+                        <div class="notif-meta">${date.toLocaleString('ja-JP')}</div>
+                    </div>
+                `;
+                listEl.appendChild(li);
+            });
+        } catch (e) {
+            emptyEl.style.display = 'block';
+        }
+    });
+    </script>
+</body>
+</html>
+
+
